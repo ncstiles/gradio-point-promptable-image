@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gradio_point_promptable_image"
-version = "0.0.2"
+version = "0.0.3"
 description = "A webcam-compatible Gradio input component enabling point-based prompting."
 readme = "README.md"
 license = "MIT"

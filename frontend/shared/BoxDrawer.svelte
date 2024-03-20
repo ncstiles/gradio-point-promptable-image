@@ -99,15 +99,15 @@
   }
 
   function handle_draw_start(e: MouseEvent | TouchEvent) {
-    e.preventDefault();
+        e.preventDefault();
     (mouse_pressing = true), (mouse_button = 0);
     if (e instanceof MouseEvent) mouse_button = e.button;
-    const { x, y } = get_mouse_pos(e);
+        const { x, y } = get_mouse_pos(e);
     (prev_x = x), (prev_y = y);
   }
 
   function handle_draw_move(e: MouseEvent | TouchEvent) {
-    e.preventDefault();
+        e.preventDefault();
     const { x, y } = get_mouse_pos(e);
     (cur_x = x), (cur_y = y);
   }
@@ -121,7 +121,7 @@
       let x2 = Math.max(prev_x, x);
       let y2 = Math.max(prev_y, y);
       let is_point = x1 == x2 && y1 == y2;
-      if (is_point) {
+      if (is_point) { 
         boxes.push([x1, y1, x2, y2]);
         let scale_x = natural_width / width;
         let scale_y = natural_height / height;
@@ -149,7 +149,7 @@
   function draw_canvas() {
     if (!ctx) return;
     ctx.clearRect(0, 0, width, height);
-    draw_points(boxes);
+      draw_points(boxes);
   }
 
   function draw_points(boxes: Array<Array<number>>) {
@@ -168,7 +168,7 @@
     ctx.stroke();
     // Draw background points.
     ctx.beginPath();
-    ctx.fillStyle = "rgba(255, 192, 203, 1.0)"; // Pink.
+    ctx.fillStyle = "#EF95BA"; // Pink.
     boxes.forEach((box: Array<number>, index: number) => {
       if (points[index][2] == 0) {
         let radius = Math.sqrt(width * height) * 0.01;
@@ -194,6 +194,7 @@
     on:touchcancel={handle_draw_end}
     on:blur={handle_draw_end}
     on:click|stopPropagation
+    on:contextmenu|preventDefault
     style=" z-index: 15"
   />
 </div>
